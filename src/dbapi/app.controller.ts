@@ -12,7 +12,7 @@ import { Posts } from './database/entities/post.entity';
 
 @Controller('posts')
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
 
   @Get('get-all')
   async getPosts(): Promise<Posts[]> {
@@ -20,7 +20,7 @@ export class AppController {
   }
 
   @Get('get-one')
-  async getPost(@Query() query: { id: number }): Promise<Posts | undefined | null> {
+  async getPost(@Query() query: { id: number }): Promise<Posts | undefined> {
     return this.appService.getPost(query.id);
   }
 
