@@ -9,6 +9,31 @@ export class NewsService {
         return this.news.push(news);
     }
 
+    // async updateNews (data: Posts): Promise<Posts> {
+    //     const existingPost = await this.postsRepository.findOne({
+    //       where: {
+    //         id: data.id,
+    //       },
+    //     });
+    //     return this.postsRepository.save({
+    //       ...existingPost,
+    //       ...data,
+    //     });
+    //   }
+
+    async update (id: number, data: News): Promise<News> {
+        if (typeof this.news[id] !=='undefined'){
+        let existingNews = this.news[id];
+        existingNews = {
+          ...existingNews,
+          ...data,
+        };
+        this.news[id] = existingNews;
+        return this.news[id];
+        } else throw new Error('News not found');
+        
+      }
+
     findAll (): News[]{
         return this.news;
     }

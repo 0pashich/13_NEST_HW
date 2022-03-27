@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { create } from 'domain';
 
 import { News } from './news.interface';
 import { NewsService } from './news.service';
@@ -7,13 +8,18 @@ import { NewsService } from './news.service';
 export class NewsController {
 constructor(private newService: NewsService) {}
 
-    @Get()
+    @Get('all')
     async getNews(): Promise<News[]> {
         return this.newService.findAll();
     }
 
-    @Post()
-    async createNews(@Body() data: News):Promise<number> {
+    @Post('create')
+    async createNews(@Body() data: News): Promise<number> {
       return this.newService.create(data);
+    }
+
+    @Post()
+    async updateNews (@Query() query: { id: number }, @Body() data: News): Promise<News> {
+      return this.newService.update(query.id-1, data);
     }
 }
