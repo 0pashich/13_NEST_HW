@@ -35,4 +35,13 @@ export class CommentsService {
       return posts;
     } else throw new Error('Comment not found');
   }
+
+  async editComment(postId:number, commentId: number, data: Comment): Promise<Comment>{
+    const posts = await this.postsService.getPosts();
+    if (posts[postId-1].comments[commentId - 1]) {
+    posts[postId-1].comments[commentId - 1]=data;
+    return data;
+    } else throw new Error('Comment not found');
+  }
+
 }
