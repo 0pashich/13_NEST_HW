@@ -36,11 +36,13 @@ export class CommentsService {
     } else throw new Error('Comment not found');
   }
 
-  async editComment(postId:number, commentId: number, data: Comment): Promise<Comment>{
+  async editComment(postId:number, commentId: number, text: string): Promise<Comment>{
+    // console.log (postId, commentId, text)
     const posts = await this.postsService.getPosts();
-    if (posts[postId-1].comments[commentId - 1]) {
-    posts[postId-1].comments[commentId - 1]=data;
-    return data;
+    // console.log(posts[postId-1].comments[commentId - 1])
+    if (posts[postId].comments[commentId]) {
+    posts[postId].comments[commentId].text=text;
+    return posts[postId].comments[commentId];
     } else throw new Error('Comment not found');
   }
 

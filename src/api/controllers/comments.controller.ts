@@ -7,6 +7,7 @@ import {
     Put,
     Query,
   } from '@nestjs/common';
+import { DecrementBody } from '../../utils/decrement-body.decorator';
 import { DecrementId } from '../../utils/decrement-id.decorator';
 import { Comment } from '../dto/comment.dto';
   import { Posts } from '../dto/post.dto';
@@ -34,6 +35,11 @@ import { CommentsService } from '../modules/comments/comments.service';
     @Delete('delete')
     async deleteComment(@Body() body: { postId: number, commentId: number }): Promise<Posts[]> {
       return this.commentsService.deleteComment(body.postId, body.commentId);
+    }
+
+    @Put('edit')
+    async editComment(@Body() @DecrementBody(['postId', 'commentId']) body: { postId: number, commentId: number, text: string }): Promise<Comment> {
+      return this.commentsService.editComment(body.postId, body.commentId, body.text);
     }
   
   }

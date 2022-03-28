@@ -1,4 +1,4 @@
-import { Controller, Patch, Put, Query, Req } from '@nestjs/common';
+import { Controller, Patch, Post, Put, Query, Req } from '@nestjs/common';
 import { CalcService } from './calc.service';
 import { Request } from 'express';
 
@@ -18,6 +18,5 @@ export class CalcController {
         if ( request.headers['type-operation'] === 'plus' ) return this.calcService.plus(query.key1, query.key2);
         return undefined;
         }
-
 
 }
