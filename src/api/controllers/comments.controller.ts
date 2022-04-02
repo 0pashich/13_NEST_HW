@@ -37,8 +37,8 @@ import { CommentsService } from '../modules/comments/comments.service';
       return this.commentsService.deleteComment(body.postId, body.commentId);
     }
 
-    @Put('edit')
-    async editComment(@Body() @DecrementBody(['postId', 'commentId']) body: { postId: number, commentId: number, text: string }): Promise<Comment> {
+    @Put('update')
+    async updateComment(@Body() @DecrementBody(['postId', 'commentId']) body: { postId: number, commentId: number, text: string }): Promise<Comment> {
       return this.commentsService.editComment(body.postId, body.commentId, body.text);
     }
   

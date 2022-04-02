@@ -28,8 +28,8 @@ export class PostsService {
     return posts;
   }
 
-  async getPost(id: number): Promise<Posts | undefined> {
-    return posts[id - 1];
+  async getPost(id: number): Promise<Posts> {
+    return posts[id -1];
   }
 
   async createPost(data: Posts): Promise<Posts> {
