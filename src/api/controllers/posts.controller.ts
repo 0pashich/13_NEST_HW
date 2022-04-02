@@ -3,19 +3,12 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   Post,
   Put,
   Query,
 } from '@nestjs/common';
 import { PostsService } from '../modules/posts/posts.service';
-<<<<<<< hw2
-import { Posts } from '../dto/post.dto';
-import { htmlTemplate } from '../../views/template';
-import { postTemplate } from '../../views/post';
-=======
 import { PostsDTO } from '../dto/post.dto';
->>>>>>> put lesson 3 project
 
 @Controller('posts')
 export class PostsController {
@@ -45,12 +38,4 @@ export class PostsController {
   async updatePost(@Body() data: PostsDTO): Promise<PostsDTO> {
     return this.appService.updatePost(data);
   }
-
-  @Get(':id/detail')
-  async getDetailPost(@Param('id') id: number): Promise<string> {
-    const post = this.appService.getPost(id);
-    return htmlTemplate(postTemplate(post));
-  }
-
-  
 }

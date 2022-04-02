@@ -30,13 +30,8 @@ export class PostsService {
     return posts;
   }
 
-<<<<<<< hw2
-  async getPost(id: number): Promise<Posts> {
-    return posts[id -1];
-=======
   async getPost(id: number): Promise<PostsDTO | undefined> {
     return posts[id - 1];
->>>>>>> put lesson 3 project
   }
 
   async createPost(data: PostsDTO): Promise<PostsDTO> {

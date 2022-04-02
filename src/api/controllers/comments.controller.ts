@@ -20,13 +20,6 @@ import { join } from 'path';
 import { Multer } from 'multer';
 import { LoggingInterceptor } from '../modules/logger/logger.interceptor';
 
-<<<<<<< hw2
-    @Put('update')
-    async updateComment(@Body() @DecrementBody(['postId', 'commentId']) body: { postId: number, commentId: number, text: string }): Promise<Comment> {
-      return this.commentsService.editComment(body.postId, body.commentId, body.text);
-    }
-  
-=======
 @Controller('comments')
 @UseInterceptors(LoggingInterceptor)
 export class CommentsController {
@@ -76,6 +69,5 @@ export class CommentsController {
   async getFile(@Res() response: Response) {
     console.log(join(process.cwd() + 'package.json'));
     await this.commentsService.getFile(response);
->>>>>>> put lesson 3 project
   }
 }
