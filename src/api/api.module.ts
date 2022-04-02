@@ -10,9 +10,9 @@ import { LoggerModule } from './modules/logger/logger.module';
   imports: [
     PostsModule,
     CommentsModule,
-    // MulterModule.register({
-    //   dest: './upload',
-    // })
+    MulterModule.register({
+      dest: './files',
+    })
   ],
   controllers: [PostsController, CommentsController],
 })

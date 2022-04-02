@@ -61,13 +61,20 @@ export class CommentsController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    await this.commentsService.saveFile('files/receipt.pdf', file.buffer);
+  async uploadFile(
+    @Query() @DecrementId(['postId', 'commentId']) query: { postId: number; commentId: number },
+  @UploadedFile() file: Express.Multer.File) {
+   console.log('postID:', query.postId);
+   console.log('commentID:', query.commentId);
+    console.log({originalname: file.originalname, filename: file.filename})
+
+    return await this.commentsService.attachFile(query.postId, query.commentId, 
+      {originalname: file.originalname, filename: file.filename});
   }
 
   @Get('file')
   async getFile(@Res() response: Response) {
-    console.log(join(process.cwd() + 'package.json'));
+    console.log(join(process.cwd() + '/package.json'));
     await this.commentsService.getFile(response);
   }
 }

@@ -1,6 +1,6 @@
 import { resolve } from 'path';
-import { Posts } from '../api/dto/post.dto';
-export const postTemplate = async (postPromise: Promise<Posts>): Promise<string> => {
+import { PostsDTO } from '../api/dto/post.dto';
+export const postTemplate = async (postPromise: Promise<PostsDTO>): Promise<string> => {
     const post = await postPromise
     if (post === undefined) {
         return emptyNews();

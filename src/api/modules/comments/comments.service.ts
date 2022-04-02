@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CommentDTO } from '../../../api/dto/comment.dto';
+import { attachmentDTO, CommentDTO } from '../../../api/dto/comment.dto';
 import { PostsDTO } from '../../dto/post.dto';
 import { PostsService } from '../posts/posts.service';
 import * as fs from 'fs';
@@ -31,14 +31,15 @@ export class CommentsService {
     return data;
   }
 
-  async saveFile(path: string, data: Buffer) {
-    fs.writeFile(path, data, (error) => {
-      if (error) throw new Error(error.message);
-    });
+  async attachFile (postId: number, commentId: number, attachment: attachmentDTO ) {
+    const posts = await this.postsService.getPosts();
+    if (!posts[postId].comments[commentId].attachment) posts[postId].comments[commentId].attachment=[]
+ posts[postId].comments[commentId].attachment?.push(attachment);
+    return posts[postId].comments[commentId];
   }
 
   async getFile(response: Response) {
-    const buffer = fs.createReadStream('/Users/user/blog/files/receipt.pdf');
+    const buffer = fs.createReadStream('files/receipt.pdf');
     this.myLogger.warn('About to return cats!');
     buffer.pipe(response).on('close', () => {
       buffer.destroy();
