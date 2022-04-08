@@ -5,6 +5,7 @@ import {
   Get,
   Post,
   Query,
+  Render,
   Res,
   StreamableFile,
   UploadedFile,
@@ -23,7 +24,13 @@ import { LoggingInterceptor } from '../modules/logger/logger.interceptor';
 @Controller('comments')
 @UseInterceptors(LoggingInterceptor)
 export class CommentsController {
-  constructor(private readonly commentsService: CommentsService) { }
+  constructor(private readonly commentsService: CommentsService) {}
+
+  @Get('template')
+  @Render('index')
+  getTemplate(): { message: string } {
+    return { message: 'Hello world!' };
+  }
 
   @Get('/')
   async getComments(
@@ -32,7 +39,7 @@ export class CommentsController {
     return this.commentsService.getComments(query.id);
   }
 
-  @Get('/get-one')
+  @Get('get-one')
   async getComment(
     @Query()
     @DecrementId(['postId', 'commentId'])
@@ -61,16 +68,13 @@ export class CommentsController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(
-    @Query() @DecrementId(['postId', 'commentId']) query: { postId: number; commentId: number },
-    @UploadedFile() file: Express.Multer.File) {
-    return await this.commentsService.attachFile(query.postId, query.commentId,
-      { originalname: file.originalname, filename: file.filename });
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    await this.commentsService.saveFile('files/receipt.pdf', file.buffer);
   }
 
   @Get('file')
   async getFile(@Res() response: Response) {
-    console.log(join(process.cwd() + '/package.json'));
+    console.log(join(process.cwd() + 'package.json'));
     await this.commentsService.getFile(response);
   }
 }

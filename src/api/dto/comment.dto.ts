@@ -17,16 +17,4 @@ export class CommentDTO {
   @IsOptional()
   @IsDate()
   createdAt!: Date;
-
-  @IsOptional()
-  attachment?: attachmentDTO[] = [];
-}
-
-export class attachmentDTO {
-  @IsString()
-  originalname!: string;
-
-  @IsString()
-  filename!: string;
-
 }

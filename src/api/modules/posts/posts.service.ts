@@ -14,7 +14,6 @@ const posts: PostsDTO[] = [
         id: 1,
         text: 'comment',
         createdAt: new Date(Date.now()),
-        attachment: []
       },
       {
         id: 2,
