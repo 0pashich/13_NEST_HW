@@ -23,7 +23,7 @@ import { LoggingInterceptor } from '../modules/logger/logger.interceptor';
 @Controller('comments')
 @UseInterceptors(LoggingInterceptor)
 export class CommentsController {
-  constructor(private readonly commentsService: CommentsService) {}
+  constructor(private readonly commentsService: CommentsService) { }
 
   @Get('/')
   async getComments(
@@ -63,13 +63,9 @@ export class CommentsController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
     @Query() @DecrementId(['postId', 'commentId']) query: { postId: number; commentId: number },
-  @UploadedFile() file: Express.Multer.File) {
-   console.log('postID:', query.postId);
-   console.log('commentID:', query.commentId);
-    console.log({originalname: file.originalname, filename: file.filename})
-
-    return await this.commentsService.attachFile(query.postId, query.commentId, 
-      {originalname: file.originalname, filename: file.filename});
+    @UploadedFile() file: Express.Multer.File) {
+    return await this.commentsService.attachFile(query.postId, query.commentId,
+      { originalname: file.originalname, filename: file.filename });
   }
 
   @Get('file')
