@@ -6,9 +6,9 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 @Module({
   imports: [
     MailerModule.forRoot({
-      transport: 'smtps://gbtestar@mail.ru:NjR9H80tdgTLmfhj2qWG@smtp.mail.ru',
+      transport: 'smtps://pasvel.golubev.85@mail.ru:Y0cEApscbxGaLzdgNq9p@smtp.mail.ru',
       defaults: {
-        from: '"NestJS робот" <gbtestar@mail.ru>',
+        from: '"NestJS робот" <pasvel.golubev.85@mail.ru>',
       },
       template: {
         dir: join(__dirname, '../..', 'views/templates'),

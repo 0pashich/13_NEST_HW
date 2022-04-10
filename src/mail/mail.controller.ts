@@ -5,6 +5,6 @@ export class MailController {
   constructor(private readonly mailService: MailService) {}
   @Get()
   async sendTestEmail() {
-    return await this.mailService.sendLogMessage('gbtestar@mail.ru');
+    return await this.mailService.sendLogMessage('pasvel.golubev.85@mail.ru');
   }
 }
