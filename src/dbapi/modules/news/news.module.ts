@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { NewsController } from './news.controller';
+import { NewsController } from '../../controllers/news.controller';
 import { NewsService } from './news.service';
 
 @Module({

@@ -19,7 +19,7 @@ async function bootstrap() {
     }),
   );
 
-  app.setBaseViewsDir(join(__dirname, '../..', 'views'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
 
   await app.listen(3000);

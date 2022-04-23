@@ -1,5 +1,5 @@
 import { Controller, Patch, Post, Put, Query, Req } from '@nestjs/common';
-import { CalcService } from './calc.service';
+import { CalcService } from '../modules/calc/calc.service';
 import { Request } from 'express';
 
 @Controller('calc')

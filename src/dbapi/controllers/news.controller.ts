@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { create } from 'domain';
 
-import { News } from './news.interface';
-import { NewsService } from './news.service';
+import { News } from '../dto/news.dto';
+import { NewsService } from '../modules/news/news.service';
 
 @Controller('news')
 export class NewsController {
