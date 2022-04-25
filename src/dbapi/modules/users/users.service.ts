@@ -20,4 +20,7 @@ export class UsersService {
         userEntity.role = user.role;
         return await this.usersRepository.save(userEntity);
     }
+    async findById(id: number): Promise<UsersEntity | undefined> {
+        return await this.usersRepository.findOne({ id });
+    }
 }

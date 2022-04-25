@@ -8,9 +8,11 @@ import { UsersModule } from './modules/users/users.module';
 import { NewsModule } from './modules/news/news.module';
 import { UsersController } from './controllers/users.controller';
 import { NewsController } from './controllers/news.controller';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { CategoriesController } from './controllers/categories.controller';
 
 @Module({
-  imports: [DatabaseModule, PostsModule, CommentsModule, UsersModule, NewsModule],
-  controllers: [PostsController, CommentsController, UsersController, NewsController],
+  imports: [DatabaseModule, PostsModule, CommentsModule, UsersModule, NewsModule, CategoriesModule],
+  controllers: [PostsController, CommentsController, UsersController, NewsController, CategoriesController],
 })
 export class ApiModule {}
